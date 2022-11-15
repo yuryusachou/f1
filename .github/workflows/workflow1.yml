@@ -2,6 +2,10 @@
 
 name: my_workflow_name
 
+env:
+  name: "yohoho"
+  commit_id: "commit id is ${{ github.sha }}"
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
@@ -26,10 +30,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script (step1)
-        run: echo Hello, world!
+        run: echo Hello, ${{ name }}! 
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script (step2)
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          echo "${{ commit_id }}, I repeat ${{ github.sha }}" 
